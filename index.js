@@ -46,8 +46,8 @@ async function run() {
 
     const yamlDump = yaml.dump(data);
 
-    core.debug(JSON.stringify(data));
-    core.debug(yamlDump);
+    core.info(JSON.stringify(data));
+    core.info(yamlDump);
 
     //fs.writeFileSync(filePath, outFile);
   } catch (error) {
