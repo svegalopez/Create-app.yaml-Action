@@ -1,0 +1,22 @@
+name: "Create app.yaml file"
+description: "Create an app.yaml file from Github secrets"
+author: "Sebastian Vega"
+branding:
+  color: "black"
+  icon: "box"
+inputs:
+  runtime:
+    description: "The runtime to use for the app.yaml file"
+    default: "nodejs18"
+  file_name:
+    description: "The filename for the envfile"
+    default: ".env"
+  directory:
+    description: "The directory to put the envfile in"
+    default: ""
+  fail_on_empty:
+    description: "Fail if an env key is an empty string"
+    default: "false"
+runs:
+  using: "node16"
+  main: "index.js"

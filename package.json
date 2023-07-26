@@ -1,0 +1,24 @@
+{
+  "name": "create-app-yaml-action",
+  "version": "1.0.0",
+  "description": "Use this action to generate an app.yaml file from your github secrets",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/svegalopez/create-app-yaml-action.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/svegalopez/create-app-yaml-action/issues"
+  },
+  "homepage": "https://github.com/svegalopez/create-app-yaml-action#readme",
+  "dependencies": {
+    "@actions/core": "^1.10.0",
+    "js-yaml": "^4.1.0"
+  }
+}
