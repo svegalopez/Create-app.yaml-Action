@@ -44,7 +44,7 @@ async function run() {
     const yamlDump = yaml.dump(params);
 
     core.info(`Writing to: ${filePath}`);
-    core.info(`${filename}:`);
+    core.info(`${fileName}:`);
     core.info(yamlDump);
 
     writeFileSync(filePath, yamlDump);
