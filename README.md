@@ -1,4 +1,4 @@
-# Create app.yaml file Action
+# Create Google App Engine yaml file
 
 This action creates an app.yaml (or however you name it) file to be used with Google App Engine when deploying via Github Actions.
 It creates the file and saves it to your desired location.
