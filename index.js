@@ -10,9 +10,9 @@ async function run() {
     for (const key of Object.keys(process.env)) {
       const value = process.env[key];
       if (key.startsWith("ENVKEY_")) {
-        data.env_variables[key.slice(13)] = value;
-      } else {
-        data[key] = process.env[key] || "";
+        data.env_variables[key.slice(7)] = value;
+      } else if (key.startsWith("INPUT_")) {
+        data[key.slice(6)] = value;
       }
     }
 
