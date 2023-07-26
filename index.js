@@ -25,6 +25,8 @@ async function run() {
     const fileName = core.getInput("filename") || "app.yaml";
     let filePath = process.env["GITHUB_WORKSPACE"] || ".";
 
+    core.info(`Github Workspace: ${filePath}`);
+
     if (filePath === "" || filePath === "None") {
       filePath = ".";
     }
