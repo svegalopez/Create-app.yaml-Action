@@ -1,9 +1,7 @@
 # Create app.yaml file Action
 
-This action creates an app.yaml file to be used with Google App Engine.
-It creates the file and injects env variables from github secrets and github variables.
-
-## Inputs
+This action creates an app.yaml (or however you name it) file to be used with Google App Engine.
+It creates the file and saves it to your desired location.
 
 ### `who-to-greet`
 
