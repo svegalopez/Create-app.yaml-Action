@@ -1,47 +1,53 @@
 const core = require("@actions/core");
 const yaml = require("js-yaml");
+const path = require("path");
+const writeFileSync = require("fs").writeFileSync;
 
 async function run() {
   try {
-    let data = {
+    // Supported app.yaml params
+    // More will be added as needed
+    let params = {
+      runtime: null,
       env_variables: {},
     };
 
     for (const key of Object.keys(process.env)) {
       const value = process.env[key];
       if (key.startsWith("ENVKEY_")) {
-        data.env_variables[key.slice(7)] = value;
+        params.env_variables[key.slice(7)] = value;
       } else if (key.startsWith("VALUE_")) {
-        data[key.slice(6)] = value;
+        params[key.slice(6)] = value;
       }
     }
 
-    // const directory = core.getInput("directory") || "";
-    // const fileName = core.getInput("file_name") || ".env";
-    // let filePath = process.env["GITHUB_WORKSPACE"] || ".";
+    const directory = core.getInput("directory") || "";
+    const fileName = core.getInput("filename") || "app.yaml";
+    let filePath = process.env["GITHUB_WORKSPACE"] || ".";
 
-    // if (filePath === "" || filePath === "None") {
-    //   filePath = ".";
-    // }
+    if (filePath === "" || filePath === "None") {
+      filePath = ".";
+    }
 
-    // if (directory === "") {
-    //   filePath = path.join(filePath, fileName);
-    // } else if (directory.startsWith("/")) {
-    //   throw new Error(
-    //     "Absolute paths are not allowed. Please use a relative path."
-    //   );
-    // } else if (directory.startsWith("./")) {
-    //   filePath = path.join(filePath, directory.slice(2), fileName);
-    // } else {
-    //   filePath = path.join(filePath, directory, fileName);
-    // }
+    if (directory === "") {
+      filePath = path.join(filePath, fileName);
+    } else if (directory.startsWith("/")) {
+      throw new Error(
+        "Absolute paths are not allowed. Please use a relative path."
+      );
+    } else if (directory.startsWith("./")) {
+      filePath = path.join(filePath, directory.slice(2), fileName);
+    } else {
+      filePath = path.join(filePath, directory, fileName);
+    }
 
-    const yamlDump = yaml.dump(data);
+    const yamlDump = yaml.dump(params);
 
-    core.info(JSON.stringify(data));
+    core.info(`Writing to: ${filePath}`);
+    core.info(`${filename}:`);
     core.info(yamlDump);
 
-    //fs.writeFileSync(filePath, outFile);
+    writeFileSync(filePath, yamlDump);
   } catch (error) {
     if (error instanceof Error) core.setFailed(error.message);
   }
