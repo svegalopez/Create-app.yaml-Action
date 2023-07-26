@@ -4,23 +4,15 @@ const yaml = require("js-yaml");
 async function run() {
   try {
     let data = {
-      runtime: "",
       env_variables: {},
     };
 
-    let outFile = "";
-    data.runtime = core.getInput("runtime") || "nodejs18";
-    const envKeys = Object.keys(process.env);
-
-    for (const key of envKeys) {
-      if (key.startsWith("INPUT_ENVKEY_")) {
-        const value = process.env[key] || "";
-
-        if (value === "" && core.getInput("fail_on_empty") === "true") {
-          throw new Error(`Empty env key found: ${key}`);
-        }
-
+    for (const key of Object.keys(process.env)) {
+      const value = process.env[key];
+      if (key.startsWith("ENVKEY_")) {
         data.env_variables[key.slice(13)] = value;
+      } else {
+        data[key] = process.env[key] || "";
       }
     }
 
