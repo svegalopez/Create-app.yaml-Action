@@ -11,7 +11,7 @@ async function run() {
       const value = process.env[key];
       if (key.startsWith("ENVKEY_")) {
         data.env_variables[key.slice(7)] = value;
-      } else if (key.startsWith("INPUT_")) {
+      } else if (key.startsWith("VALUE_")) {
         data[key.slice(6)] = value;
       }
     }

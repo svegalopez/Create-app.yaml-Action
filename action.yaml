@@ -5,7 +5,7 @@ branding:
   color: "black"
   icon: "box"
 inputs:
-  file_name:
+  filename:
     description: "The filename for the envfile"
     default: "app.yaml"
   directory:
