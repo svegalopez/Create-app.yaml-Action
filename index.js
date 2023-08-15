@@ -8,6 +8,7 @@ async function run() {
     // Supported app.yaml params
     // More will be added as needed
     let params = {
+      inbound_services: ["warmup"],
       runtime: null,
       env_variables: {},
     };
