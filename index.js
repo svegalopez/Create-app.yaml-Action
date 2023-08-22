@@ -11,12 +11,15 @@ async function run() {
       inbound_services: ["warmup"],
       runtime: null,
       env_variables: {},
+      automatic_scaling: {},
     };
 
     for (const key of Object.keys(process.env)) {
       const value = process.env[key];
       if (key.startsWith("ENVKEY_")) {
         params.env_variables[key.slice(7)] = value;
+      } else if (key.startsWith("AUTOSCALING_")) {
+        params.automatic_scaling[key.slice(12)] = value;
       } else if (key.startsWith("VALUE_")) {
         params[key.slice(6)] = value;
       }
