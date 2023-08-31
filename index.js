@@ -8,7 +8,7 @@ async function run() {
     // Supported app.yaml params
     // More will be added as needed
     let params = {
-      inbound_services: ["warmup"],
+      inbound_services: [],
       runtime: null,
       env_variables: {},
       automatic_scaling: {},
@@ -22,6 +22,8 @@ async function run() {
         params.automatic_scaling[key.slice(12)] = value;
       } else if (key.startsWith("VALUE_")) {
         params[key.slice(6)] = value;
+      } else if (key.startsWith("INBOUND_SERVICES")) {
+        params.inbound_services.push(...value.split(","));
       }
     }
 
